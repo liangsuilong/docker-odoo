@@ -47,12 +47,14 @@ RUN set -ex; \
 # Install Odoo
 ENV ODOO_VERSION 10.0
 ENV ODOO_RELEASE 20180122
-RUN set -x; \
+RUN set -ex; \
+        apt-get update; \
+	apt-get  install -y --no-install-recommends wget; \
         wget -O odoo.deb "http://nightly.odoo.com/${ODOO_VERSION}/nightly/deb/odoo_${ODOO_VERSION}.${ODOO_RELEASE}_all.deb" \
-        && dpkg --force-depends -i odoo.deb \
-        && apt-get update \
-        && apt-get -y install -f --no-install-recommends \
-        && rm -rf /var/lib/apt/lists/* odoo.deb
+        dpkg --force-depends -i odoo.deb; \
+        apt-get -y install -f --no-install-recommends; \
+	apt-get purge -y --auto-remove wget; \
+        rm -rf /var/lib/apt/lists/* odoo.deb
 
 # Copy entrypoint script and Odoo configuration file
 ADD entrypoint.sh /usr/local/bin/entrypoint.sh
