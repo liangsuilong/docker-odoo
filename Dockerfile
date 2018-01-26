@@ -50,7 +50,7 @@ ENV ODOO_RELEASE 20180122
 RUN set -ex; \
         apt-get update; \
 	apt-get  install -y --no-install-recommends wget; \
-        wget -O odoo.deb "http://nightly.odoo.com/${ODOO_VERSION}/nightly/deb/odoo_${ODOO_VERSION}.${ODOO_RELEASE}_all.deb" \
+        wget -O odoo.deb "http://nightly.odoo.com/${ODOO_VERSION}/nightly/deb/odoo_${ODOO_VERSION}.${ODOO_RELEASE}_all.deb"; \
         dpkg --force-depends -i odoo.deb; \
         apt-get -y install -f --no-install-recommends; \
 	apt-get purge -y --auto-remove wget; \
