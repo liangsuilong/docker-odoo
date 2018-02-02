@@ -24,6 +24,7 @@ check_config "db_password" "${POSTGRES_PASSWORD}"
 
 case "$1" in
 	odoo)
+		chown -R odoo:odoo /var/lib/odoo/
 		if [[ `ls $ODOO_CODE | wc -l` == 0 ]]; then
 			echo "Running Odoo Code In Container......"
         		exec gosu odoo /usr/bin/odoo  "${DB_ARGS[@]}"
