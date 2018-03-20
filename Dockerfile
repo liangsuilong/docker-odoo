@@ -45,8 +45,8 @@ RUN set -ex; \
 
 
 # Install Odoo
-ENV ODOO_VERSION 10.0
-ENV ODOO_RELEASE 20180122
+ENV ODOO_VERSION 11.0
+ENV ODOO_RELEASE 20180319
 RUN set -x; \
         apt-get update; \
 	apt-get  install -y --no-install-recommends wget; \
