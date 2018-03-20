@@ -1,8 +1,8 @@
 FROM ubuntu:16.04
 MAINTAINER Suilong Liang <suilong.liang@worktogether.io>
 
-ENV ODOO_VERSION 10.0
-ENV ODOO_RELEASE 20180122
+ENV ODOO_VERSION 11.0
+ENV ODOO_RELEASE 20180319
 ENV GOSU_VERSION 1.10
 
 RUN groupadd -r odoo  && useradd -r -g odoo odoo
@@ -14,11 +14,11 @@ RUN set -ex; \
 		ca-certificates \
 		wget \
                 node-less \
-                python-gevent \
-                python-pip \
-                python-setuptools \
-                python-renderpm \
-                python-watchdog \
+                python3-gevent \
+                python3-pip \
+                python3-setuptools \
+                python3-renderpm \
+                python3-watchdog \
                 xz-utils \
 	'; \
 	apt-get update; \
@@ -31,9 +31,9 @@ RUN set -ex; \
         cp -r wkhtmltox/share/man/man1 /usr/local/share/man/; \
 	rm -f wkhtmltox.tar.xz; \
 	rm -rf wkhtmltox/; \
-	pip install --upgrade pip; \
-	pip install --upgrade setuptools; \
-        pip install psycogreen==1.0; \
+	pip3 install --upgrade pip; \
+	pip3 install --upgrade setuptools; \
+        pip3 install psycogreen==1.0; \
 	dpkgArch="$(dpkg --print-architecture | awk -F- '{ print $NF }')"; \
 	wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch"; \
 	\

@@ -41,7 +41,7 @@ case "$1" in
 				echo "data_dir=/var/lib/odoo"
 			fi 
 			chown -R odoo:odoo /opt/odoo/
-			exec gosu odoo /usr/bin/python2.7 ${ODOO_CODE}/odoo-bin -c ${ODOO_CODE}/odoo.conf
+			exec gosu odoo /usr/bin/python3 ${ODOO_CODE}/odoo-bin -c ${ODOO_CODE}/odoo.conf
                 fi 
         	;;
     	*)
